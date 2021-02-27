@@ -1,0 +1,19 @@
+import { useField } from 'formik'
+
+const Password = ({ label, password, ...props }) => {
+  // React treats radios and checkbox inputs differently other input types, select, and textarea.
+  // Formik does this too! When you specify `type` to useField(), it will
+  // return the correct bag of props for you -- a `checked` prop will be included
+  // in `field` alongside `name`, `value`, `onChange`, and `onBlur`
+  const [field, meta] = useField({ ...props, type: 'password' })
+
+  return (
+    <div className={className ?? ''}>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <input type="password" {...field} {...props} />
+      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+    </div>
+  )
+}
+
+export default Password
